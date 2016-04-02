@@ -1,0 +1,22 @@
+
+      #message_block{
+        width:100%;
+        position: absolute;
+        top:0;
+        bottom:5%;
+        margin-bottom:10px; 
+        overflow:auto;
+      }
+      #messages { 
+        list-style-type: none; 
+        margin: 10px; 
+        
+        padding: 0; 
+      }
+      #messages li { 
+        padding: 5px 10px; 
+        font-size:16pt;
+      }
+      #messages li:nth-child(odd) { 
+        background: #eee; 
+      }
