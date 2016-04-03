@@ -5,13 +5,13 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
-	<title>教學模式</title>
+	<title>會議模式</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
 	
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
-	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
+<!-- 	<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
 	<link href="assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
 	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
@@ -31,26 +31,37 @@
 	<style type="text/css" media="screen">
 	button {
 
-  margin: 0 20px 0 0;
-  width: 100px;
-  height:50px
+		  margin: 0 20px 0 0;
+		  width: 100px;
+		  height:35px
+		}
+
+		button#hangupButton {
+		    margin: 0;
+		}
+
+		video {
+		  height: 240px;
+		  margin: 0 0 0 0;
+		  width: 316px;
+		}
+
+		video#video1 {
+		  margin: 0 0px 0px 0;
+		}
 }
 
-button#hangupButton {
-    margin: 0;
-}
+        #dCanvas,#dLine { clear: both; }
+        .option
+        {
+            float: left; width: 20px; height: 20px; border: 2px solid #cccccc;
+            margin-right: 4px; margin-bottom: 4px;
+        }
+        .active { border: 2px solid black; }
+        .lw { text-align: center; vertical-align: middle; }
+        img.output { border: 1px solid green; }
+        #cSketchPad { cursor: arrow; }
 
-video {
-  height: 240px;
-  margin: 0 0 0 0;
-  width: 316px;
-}
-
-video#video1 {
-  margin: 0 0px 0px 0;
-}
-}
-		
 	</style>	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/pace/pace.min.js"></script>
@@ -66,8 +77,8 @@ video#video1 {
 		<!-- begin #header -->
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<!-- begin container-fluid -->
-			<div class="container-fluid" style="height: 56px;"    
->
+			<div class="container-fluid" 
+			style="height: 56px;">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
 				<a href="index.html" class="navbar-brand"><span><img src="../img/logo.png" width="142px" height="28px"></span></a>
@@ -77,21 +88,6 @@ video#video1 {
 						<span class="icon-bar"></span>
 					</button>
 				</div>
-				<!-- end mobile sidebar expand / collapse button -->
-<!-- 				<ul class="nav navbar-nav navbar-center">
-				<li>
-					<div class="dropdown">
-					  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-					    教學
-					    <span class="caret"></span>
-					  </button>
-					  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					    <li><a href="#">會議</a></li>
-					    <li><a href="#">Another action</a></li>
-					  </ul>
-					</div>
-				</li>
-				</ul> -->
 				
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
@@ -151,7 +147,7 @@ video#video1 {
                                 </a>
                             </li>
                             <li class="dropdown-footer text-center">
-                                <a href="javascript:;">View more</a>
+                                <a href="javascript:;">更多訊息</a>
                             </li>
 						</ul>
 					</li>
@@ -162,12 +158,11 @@ video#video1 {
 						</a>
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
-							<li><a href="javascript:;">Edit Profile</a></li>
-							<li><a href="javascript:;"><span class="badge badge-danger pull-right">2</span> Inbox</a></li>
-							<li><a href="javascript:;">Calendar</a></li>
-							<li><a href="javascript:;">Setting</a></li>
+							<li><a href="javascript:;">編輯資料</a></li>
+							<li><a href="javascript:;">換房間</a></li>
+							<li><a href="javascript:;">新增房間</a></li>
 							<li class="divider"></li>
-							<li><a href="javascript:;">Log Out</a></li>
+							<li><a href="javascript:;">登出</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -283,15 +278,6 @@ video#video1 {
 		<!-- begin #content -->
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
-		<!-- 	<ol class="breadcrumb pull-right">
-				<li><a href="javascript:;">Home</a></li>
-				<li class="active">Dashboard</li>
-			</ol> -->
-			<!-- end breadcrumb -->
-			<!-- begin page-header -->
-			<!-- <h1 class="page-header">Dashboard <small>header small text goes here...</small></h1> -->
-			<!-- end page-header -->
-			
 			<!-- begin row -->
 			<div class="row">
 				<!-- begin col-12 -->
@@ -309,19 +295,19 @@ video#video1 {
 						<img src="../img/Group 21.png">
 						</button>
       					<button id="callButton">
-      					<img src="../img/Group 22.png">
+      					<img src="../img/phone 2.png">
       					</button>
-
+						<button id="snapshotButton">
+						<img src="../img/cut_filled.png">
+						</button>
       					<button id="hangupButton" >
       					<img src="../img/Group 7.png">
       					</button>
+
+
       					</center>
 						
 						</div>
-				<!-- 		<div class="panel-footer">
-		
-
-                        </div> -->
 					</div>
 				</div>
 				<!-- end col-12 -->
@@ -339,10 +325,20 @@ video#video1 {
 							<h4 class="panel-title">白版區</h4>
 						</div>
 						<div class="panel-body">
-						view
+						
+						<div id="dCanvas">
+						<canvas id="cSketchPad" width="300" height="300" />
+						</div>
 						</div>
 						<div class="panel-footer">
-						button
+						<div id="dPallete"></div>
+						<div id="dLine"></div>
+						<input type="button" id="bGenImage" value="儲存" />
+						<div id="dOutput"></div>
+
+					<br>
+					<br>
+					<br>
                         </div>
 					</div>
 				</div>
@@ -397,6 +393,82 @@ video#video1 {
 </div>
 	</div>
 	<!-- end page container -->
+	        <!-- begin theme-panel -->
+        <div class="theme-panel">
+            <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn"><i class="fa fa-cog"></i></a>
+            <div class="theme-panel-content">
+                <h5 class="m-t-0">目前檔案</h5>
+                <div class="divider"></div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Header Styling</div>
+                    <div class="col-md-7">
+                        <select name="header-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">inverse</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label">Header</div>
+                    <div class="col-md-7">
+                        <select name="header-fixed" class="form-control input-sm">
+                            <option value="1">fixed</option>
+                            <option value="2">default</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Sidebar Styling</div>
+                    <div class="col-md-7">
+                        <select name="sidebar-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">grid</option>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                 <br>
+                <h5 class="m-t-0">我的檔案</h5>
+                <div class="divider"></div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label">Sidebar</div>
+                    <div class="col-md-7">
+                        <select name="sidebar-fixed" class="form-control input-sm">
+                            <option value="1">fixed</option>
+                            <option value="2">default</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Sidebar Gradient</div>
+                    <div class="col-md-7">
+                        <select name="content-gradient" class="form-control input-sm">
+                            <option value="1">disabled</option>
+                            <option value="2">enabled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-5 control-label double-line">Content Styling</div>
+                    <div class="col-md-7">
+                        <select name="content-styling" class="form-control input-sm">
+                            <option value="1">default</option>
+                            <option value="2">black</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row m-t-10">
+                    <div class="col-md-12">
+                      <span class="uplaod_file">
+                      <center><img src="../img/plus.png"></center>
+                      	
+                      </span>
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end theme-panel -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -433,7 +505,80 @@ video#video1 {
 	<script src="../js/video.js"></script>
 
 	<!-- chatroom -->
-	<script src="../js/chatroom.js"></script>
+	<!-- <script src="../js/chatroom.js"></script> -->
+
+	<!-- painter -->
+	<!-- <script src="../js/cut.js"></script> -->
+	<script type="text/javascript">
+		     $(function () {
+            //產生不同顏色的div方格當作調色盤選項
+            var colors =
+            "red;orange;yellow;green;blue;indigo;purple;black;white".split(';');
+            var sb = [];
+            $.each(colors, function (i, v) {
+                sb.push("<div class='option' style='background-color:" + v + "'></div>");
+            });
+            $("#dPallete").html(sb.join("\n"));
+            //產生不同尺寸的方格當作線條粗細選項
+            sb = [];
+            for (var i = 1; i <= 9; i++)
+                sb.push("<div class='option lw'>" +
+         "<div style='margin-top:#px;margin-left:#px;width:%px;height:%px'></div></div>"
+                .replace(/%/g, i).replace(/#/g, 10 - i / 2));
+            $("#dLine").html(sb.join('\n'));
+            var $clrs = $("#dPallete .option");
+            var $lws = $("#dLine .option");
+            //點選調色盤時切換焦點並取得顏色存入p_color，
+            //同時變更線條粗細選項的方格的顏色
+            $clrs.click(function () {
+                $clrs.removeClass("active");
+                $(this).addClass("active");
+                p_color = this.style.backgroundColor;
+                $lws.children("div").css("background-color", p_color);
+            }).first().click();
+            //點選線條粗細選項時切換焦點並取得寬度存入p_width
+            $lws.click(function () {
+                $lws.removeClass("active");
+                $(this).addClass("active");
+                p_width =
+                    $(this).children("div").css("width").replace("px", "");
+ 
+            }).eq(3).click();
+            //取得canvas context
+            var $canvas = $("#cSketchPad");
+            var ctx = $canvas[0].getContext("2d");
+            ctx.lineCap = "round";
+            ctx.fillStyle = "white"; //整個canvas塗上白色背景避免PNG的透明底色效果
+            ctx.fillRect(0, 0, $canvas.width(), $canvas.height());
+            var drawMode = false;
+            //canvas點選、移動、放開按鍵事件時進行繪圖動作
+            $canvas.mousedown(function (e) {
+                ctx.beginPath();
+                ctx.strokeStyle = p_color;
+                ctx.lineWidth = p_width;
+                ctx.moveTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
+                drawMode = true;
+            })
+            .mousemove(function (e) {
+                if (drawMode) {
+                    ctx.lineTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
+                    ctx.stroke();
+                }
+            })
+            .mouseup(function (e) {
+                drawMode = false;
+            });
+            //利用.toDataqURL()將繪圖結果轉成圖檔
+            $("#bGenImage").click(function () {
+                $("#dOutput").html(
+                $("<img />", { src: $canvas[0].toDataURL(),
+                    "class": "output"
+                }));
+            });
+        });
+
+	</script>
+
 
 	
 	<script>

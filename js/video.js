@@ -3,15 +3,37 @@
 var startButton = document.getElementById('startButton');
 var callButton = document.getElementById('callButton');
 var hangupButton = document.getElementById('hangupButton');
+ var snapshotButton = document.getElementById('snapshotButton');
+
 callButton.disabled = true;
 hangupButton.disabled = true;
 startButton.onclick = start;
 callButton.onclick = call;
 hangupButton.onclick = hangup;
+snapshotButton.onclick = snapshot;
 
-var video1 = document.querySelector('video#video1');
+var video1 = window.video = document.querySelector('video#video1');
 var video2 = document.querySelector('video#video2');
 var video3 = document.querySelector('video#video3');
+var canvas = window.canvas = document.getElementById('paintbox');
+var video2view = document.getElementById('video#video2');
+
+
+// canvas.width = 480;
+// canvas.height = 360;
+
+ function snapshot() {
+  canvas.className = "videoABC";
+  var ctx = canvas.getContext("2d");
+   ctx.drawImage(video2view,0,0,90,60,0,0,90,60);  
+
+
+};
+
+var constraints = {
+  audio: false,
+  video: true
+};
 
 var pc1Local;
 var pc1Remote;
@@ -172,3 +194,14 @@ function onAddIceCandidateSuccess() {
 function onAddIceCandidateError(error) {
   trace('Failed to add ICE candidate: ' + error.toString());
 }
+
+function successCallback(stream) {
+  window.stream = stream; // make stream available to browser console
+  video1.srcObject = stream;
+}
+
+function errorCallback(error) {
+  console.log('navigator.getUserMedia error: ', error);
+}
+
+navigator.getUserMedia(constraints, successCallback, errorCallback);
