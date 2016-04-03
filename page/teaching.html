@@ -62,6 +62,49 @@
         img.output { border: 1px solid green; }
         #cSketchPad { cursor: arrow; }
 
+
+          /*   #m{ 
+        border: 2px solid black; 
+        padding: 10px; 
+        width: 90%; 
+        margin: .5%; 
+        position: fixed; 
+        bottom: 0;
+      }
+      #send{ 
+        width: 8%; 
+        margin: .5%; 
+        background: rgb(121,2,2);
+        color:white; 
+        
+        padding: 10px; 
+        position: fixed; 
+        bottom: 0;
+        right:5px;
+      }
+      #message_block{
+        width:100%;
+        position: absolute;
+        top:0;
+        bottom:5%;
+        margin-bottom:10px;
+        border: solid 2px black; 
+        overflow:auto;
+      }
+      #messages { 
+        list-style-type: none; 
+        margin: 10px; 
+        
+        padding: 0; 
+      }
+      #messages li { 
+        padding: 5px 10px; 
+        font-size:16pt;
+      }
+      #messages li:nth-child(odd) { 
+        background: #eee; 
+      }*/
+
 	</style>	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="assets/plugins/pace/pace.min.js"></script>
@@ -286,8 +329,8 @@
 
 						</div>
 						<div class="panel-body">
-						<center>	
-							<video id="video2" autoplay ></video>
+					
+						<video id="video2" autoplay ></video>
 							<video id="video1"autoplay muted></video>
 							<video id="video3" autoplay></video>
 						
@@ -305,7 +348,6 @@
       					</button>
 
 
-      					</center>
 						
 						</div>
 					</div>
@@ -327,17 +369,14 @@
 						<div class="panel-body">
 						
 						<div id="dCanvas">
-						<canvas id="cSketchPad" width="300" height="300" />
+						<canvas id="cSketchPad" width="1000px" height="300px"/>
 						</div>
 						</div>
 						<div class="panel-footer">
 						<div id="dPallete"></div>
 						<div id="dLine"></div>
 						<input type="button" id="bGenImage" value="儲存" />
-						<div id="dOutput"></div>
-
-					<br>
-					<br>
+						<div id="dOutput"></div> 
 					<br>
                         </div>
 					</div>
@@ -361,12 +400,11 @@
 								<ul class="media-list media-list-with-divider media-messaging">
 									<li class="media media-sm">
 										<a href="javascript:;" class="pull-left">
-											<img src="assets/img/user-5.jpg" alt="" class="media-object rounded-corner" />
+										
 										</a>
-										<div class="media-body">
-											<h5 class="media-heading">{{user.name}}</h5>
-											<text id="dataChannelReceive" disable>{{message}}</text>
-										</div>
+										 <div id="message_block">
+										    <ul id="messages"></ul>
+										  <div>
 									</li>
 								</ul>
 							</div>
@@ -374,9 +412,9 @@
 						<div class="panel-footer">
 							<form>
 								<div class="input-group" id="send">
-									<input type="text" class="form-control bg-silver" placeholder="Enter message" />
+									<input type="text" class="form-control bg-silver" placeholder="Enter message"  id="m" autocomplete="off"  />
 									<span class="input-group-btn">
-										<button class="btn btn-primary" type="button"><i class="fa fa-pencil"></i></button>
+										<button class="btn btn-primary" type="button"id="send"><i class="fa fa-pencil"></i></button>
 									</span>
 								</div>
 							</form>
@@ -400,72 +438,26 @@
                 <h5 class="m-t-0">目前檔案</h5>
                 <div class="divider"></div>
                 <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Header Styling</div>
-                    <div class="col-md-7">
-                        <select name="header-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">inverse</option>
-                        </select>
+                	<div class="col-md-10">
+                		<img src="../img/Rectangle 13 Copy 2.png">
+                    </div>
+                    <div class="col-md-10 control-label double-line">
+                    <center>
+                    	name.jpg
+                    </center>
+                    
                     </div>
                 </div>
                 <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Header</div>
-                    <div class="col-md-7">
-                        <select name="header-fixed" class="form-control input-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
+                	<div class="col-md-10">
+                		<img src="../img/Rectangle 13 Copy 2.png">
                     </div>
+                    <div class="col-md-10 control-label double-line">
+                    <center>
+                    	name.jpg
+                    </center>
                 </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Styling</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">grid</option>
-                        </select>
-                    </div>
-                </div>
-                <br>
-                 <br>
-                <h5 class="m-t-0">我的檔案</h5>
-                <div class="divider"></div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label">Sidebar</div>
-                    <div class="col-md-7">
-                        <select name="sidebar-fixed" class="form-control input-sm">
-                            <option value="1">fixed</option>
-                            <option value="2">default</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Sidebar Gradient</div>
-                    <div class="col-md-7">
-                        <select name="content-gradient" class="form-control input-sm">
-                            <option value="1">disabled</option>
-                            <option value="2">enabled</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-5 control-label double-line">Content Styling</div>
-                    <div class="col-md-7">
-                        <select name="content-styling" class="form-control input-sm">
-                            <option value="1">default</option>
-                            <option value="2">black</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row m-t-10">
-                    <div class="col-md-12">
-                      <span class="uplaod_file">
-                      <center><img src="../img/plus.png"></center>
-                      	
-                      </span>
-                      
-                    </div>
-                </div>
+
             </div>
         </div>
         <!-- end theme-panel -->
@@ -494,7 +486,7 @@
 	<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
 	<script src="assets/plugins/jquery-jvectormap/jquery-jvectormap-world-mill-en.js"></script>
 	<script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<!-- <script src="assets/js/dashboard.min.js"></script> -->
+	<script src="assets/js/dashboard.min.js"></script>
 	<script src="assets/js/apps.min.js"></script>
 	<!-- ================== END PAGE LEVEL JS ================== -->
 
@@ -508,83 +500,51 @@
 	<!-- <script src="../js/chatroom.js"></script> -->
 
 	<!-- painter -->
-	<!-- <script src="../js/cut.js"></script> -->
-	<script type="text/javascript">
-		     $(function () {
-            //產生不同顏色的div方格當作調色盤選項
-            var colors =
-            "red;orange;yellow;green;blue;indigo;purple;black;white".split(';');
-            var sb = [];
-            $.each(colors, function (i, v) {
-                sb.push("<div class='option' style='background-color:" + v + "'></div>");
-            });
-            $("#dPallete").html(sb.join("\n"));
-            //產生不同尺寸的方格當作線條粗細選項
-            sb = [];
-            for (var i = 1; i <= 9; i++)
-                sb.push("<div class='option lw'>" +
-         "<div style='margin-top:#px;margin-left:#px;width:%px;height:%px'></div></div>"
-                .replace(/%/g, i).replace(/#/g, 10 - i / 2));
-            $("#dLine").html(sb.join('\n'));
-            var $clrs = $("#dPallete .option");
-            var $lws = $("#dLine .option");
-            //點選調色盤時切換焦點並取得顏色存入p_color，
-            //同時變更線條粗細選項的方格的顏色
-            $clrs.click(function () {
-                $clrs.removeClass("active");
-                $(this).addClass("active");
-                p_color = this.style.backgroundColor;
-                $lws.children("div").css("background-color", p_color);
-            }).first().click();
-            //點選線條粗細選項時切換焦點並取得寬度存入p_width
-            $lws.click(function () {
-                $lws.removeClass("active");
-                $(this).addClass("active");
-                p_width =
-                    $(this).children("div").css("width").replace("px", "");
- 
-            }).eq(3).click();
-            //取得canvas context
-            var $canvas = $("#cSketchPad");
-            var ctx = $canvas[0].getContext("2d");
-            ctx.lineCap = "round";
-            ctx.fillStyle = "white"; //整個canvas塗上白色背景避免PNG的透明底色效果
-            ctx.fillRect(0, 0, $canvas.width(), $canvas.height());
-            var drawMode = false;
-            //canvas點選、移動、放開按鍵事件時進行繪圖動作
-            $canvas.mousedown(function (e) {
-                ctx.beginPath();
-                ctx.strokeStyle = p_color;
-                ctx.lineWidth = p_width;
-                ctx.moveTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
-                drawMode = true;
-            })
-            .mousemove(function (e) {
-                if (drawMode) {
-                    ctx.lineTo(e.pageX - $canvas.position().left, e.pageY - $canvas.position().top);
-                    ctx.stroke();
-                }
-            })
-            .mouseup(function (e) {
-                drawMode = false;
-            });
-            //利用.toDataqURL()將繪圖結果轉成圖檔
-            $("#bGenImage").click(function () {
-                $("#dOutput").html(
-                $("<img />", { src: $canvas[0].toDataURL(),
-                    "class": "output"
-                }));
-            });
-        });
-
-	</script>
+	<script src="../js/pinter.js"></script>
+	<!-- <script src="../js/jquery.js"></script> -->
+	<script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
 
 
-	
+			
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
 	</script>
+
+<!-- 	<script type="text/javascript">
+    var socket = io();
+      $(document).ready(function(){
+        var name = "黃彥銘";
+        //tell server
+        socket.emit("add user",name);
+        //監聽新訊息事件
+        socket.on('chat message', function(data){
+          appendMessage(data.username+":"+data.msg);
+        });
+        socket.on('add user',function(data){
+          appendMessage(data.username+"已加入");
+        });
+        socket.on('user left',function(data){
+          appendMessage(data.username+"已離開");
+        });
+        $('#send').click(function(){
+          var text = $('#m').val();
+          socket.emit('chat message', text);
+          $('#m').val('');
+          return false;
+        });
+        $("#m").keydown(function(event){
+          if ( event.which == 13 ){
+            $('#send').click();
+          }
+        });
+        function appendMessage(msg){
+          $('#messages').append($('<li>').text(msg));
+          var message = document.getElementById("message_block");
+          message.scrollTop = message.scrollHeight;
+        }
+      });
+	</script> -->
 </body>
 </html>
